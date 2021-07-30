@@ -4,11 +4,8 @@ package com.company;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.io.Reader;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -85,11 +82,16 @@ public class Main {
         // 1
         long sum = companies.stream().count();
         System.out.println("Общее количество компаний: " + sum);
-        System.out.println("Компании: ");
         companies.stream().map((s) -> "Название: " + s.getName() + " дата основания: " + s.getDate())
                 .forEach(System.out::println);
 
         // 2
+        System.out.println("\nПросроченные ценные бумаги: ");
+
+        Map<String, String> datePapers = companies.stream()
+                .collect(Collectors.toMap(p->p.getName(), p -> p.dateCurrencies()));
+        datePapers.entrySet().stream().filter((s) -> s.getValue().compareTo("") > 0)
+                .forEach((s) -> System.out.println("Компания " + s.getKey() + "\n" + s.getValue()));
 
 
 

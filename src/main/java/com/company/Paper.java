@@ -69,7 +69,7 @@ public class Paper implements Comparable<Paper>{
     @Override
     public String toString() {
         String str = "";
-        str += ("\nНазвание бумаги: " + name + " код: " + code + " дата: " + date.toString());
+        str += ("Название ценной бумаги: " + name + " код: " + code + " дата: " + date.toString());
         if(currency.size() == 0){
             str += ".";
             return str;

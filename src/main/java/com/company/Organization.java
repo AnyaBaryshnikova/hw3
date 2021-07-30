@@ -130,6 +130,16 @@ public class Organization {
 
         return st[0];
     }
+
+    public String dateCurrencies(){
+        LocalDate today = LocalDate.now();
+        final String[] st = {""};
+        List<Paper> datePapers = papers.stream().filter(k -> k.getDate().compareTo(today) < 0).collect(Collectors.toList());
+        datePapers.stream().forEach((s) -> st[0] += s.toString() + "\n");
+
+
+        return st[0];
+    }
 }
 
 
